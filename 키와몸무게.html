@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI 계산기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BMI 계산기</h2>
+        <label for="height">키 (cm):</label>
+        <input type="number" id="height" required><br><br>
+        <label for="weight">몸무게 (kg):</label>
+        <input type="number" id="weight" required><br><br>
+        <button onclick="calculateBMI()">계산</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            var height = document.getElementById('height').value;
+            var weight = document.getElementById('weight').value;
+
+            if (height > 0 && weight > 0) {
+                var bmi = weight / ((height / 100) * (height / 100));
+                var result = document.getElementById('result');
+
+                if (bmi < 18.5) {
+                    result.innerHTML = 'BMI: ' + bmi.toFixed(2) + ' - 저체중';
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    result.innerHTML = 'BMI: ' + bmi.toFixed(2) + ' - 정상';
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    result.innerHTML = 'BMI: ' + bmi.toFixed(2) + ' - 과체중';
+                } else {
+                    result.innerHTML = 'BMI: ' + bmi.toFixed(2) + ' - 비만';
+                }
+            } else {
+                alert('키와 몸무게를 올바르게 입력해주세요.');
+            }
+        }
+    </script>
+</body>
+</html>
